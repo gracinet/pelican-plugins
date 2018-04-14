@@ -50,6 +50,7 @@ def content_object_init(instance):
                 if len(sheet.width) > 0 or len(sheet.height) > 0:
                     continue
 
+            src = None
             # Pelican 3.5+ supports {attach} macro for auto copy, in this use case the content does not exist in output
             # due to the fact it has not been copied, hence we take it from the source (same as current document)
             if img_filename.startswith('{attach}'):
@@ -73,7 +74,6 @@ def content_object_init(instance):
                     logger.info('{src} located in output, missing from content.'.format(src=img_filename))
                 else:
                     logger.warning('Better Fig. Error: img_path should start with either {attach}, {filename}, |filename| or /static')
-
             if src is None:
                 # search src path list
                 # 1. Build the source image filename from PATH
